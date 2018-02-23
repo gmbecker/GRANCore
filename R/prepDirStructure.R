@@ -33,6 +33,13 @@ prepDirStructure <- function(basedir, repo_name, temp_repo, temp_checkout,
     if (!file.exists(file.path(destination, repo_name, "src", "contrib")))
         dir.create(file.path(destination, repo_name, "src", "contrib"),
                    recursive = TRUE)
+    if (!file.exists(file.path(destination, repo_name, "src", "contrib", "PACKAGES")))
+        file.create(file.path(destination, repo_name, "src", "contrib", "PACKAGES"))
+    if (!file.exists(file.path(destination, "src", "contrib")))
+        dir.create(file.path(destination, "src", "contrib"),
+                   recursive = TRUE)
+    if (!file.exists(file.path(destination, "src", "contrib", "PACKAGES")))
+        file.create(file.path(destination, "src", "contrib", "PACKAGES"))
     if (!file.exists(file.path(destination, repo_name, "CheckResults")))
         dir.create(file.path(destination, repo_name, "CheckResults"),
                    recursive = TRUE)
