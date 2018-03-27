@@ -214,6 +214,31 @@ setMethod("archivedir", "GRANRepository",
             return(archive_dir)
 })
 
+#' metadatadir
+#' Return the full path to the pkg metadata directory for the final repository
+#' deployment.
+#'
+#' @rdname metadatadir-methods
+#' @param repo a GRANRepository object
+#' @return The full path to the metadata directory
+#' @docType methods
+#' @export
+setGeneric("metadatadir", function(repo) standardGeneric("metadatadir"))
+#' @rdname metadatadir-methods
+#' @aliases metadatadir,GRANRepository-method
+#' @export
+setMethod("metadatadir", "GRANRepository",
+          function(repo) {
+            metadata_dir <- param(repo)@repo_metadata_dir
+            if (is.null(metadata_dir) || identical(metadata_dir, character(0))) {
+              metadata_dir <- file.path(destination(repo), "Meta")
+            }
+            if(!file.exists(metadata_dir)) {
+                dir.create(metadata_dir, recursive = TRUE)
+            }
+            return(metadata_dir)
+})
+
 #' dest_base
 #' Return the full path to the contrib directory for the final repository
 #' deployment.

@@ -58,6 +58,7 @@
 #' be sent as? Defaults to "gran<repo_name>@localhost", \code{unsubscribers}:
 #' Vector of Perl-style regexes for unsubscribers - defaults to NULL.
 #' @param repo_archive Archive directory where older package sources will be saved
+#' @param repo_metadata_dir Directory containing metadata files
 #' @rdname repobuildparam
 #' @export
 
@@ -92,7 +93,9 @@ RepoBuildParam <- function(
                       sender_email = paste0("gran", repo_name, "@localhost"),
                       unsubscribers = NULL),
     repo_archive = file.path(destination, repo_name,
-                             "src", "contrib", "Archive")) {
+                             "src", "contrib", "Archive"),
+    repo_metadata_dir = file.path(destination, repo_name,
+                                  "src", "contrib", "Meta")) {
     if(!file.exists(basedir))
         dir.create(basedir, recursive = TRUE)
 
@@ -129,7 +132,8 @@ RepoBuildParam <- function(
                 check_timeout = check_timeout,
                 email_notifications = email_notifications,
                 email_opts = email_opts,
-                repo_archive = repo_archive)
+                repo_archive = repo_archive,
+                repo_metadata_dir = repo_metadata_dir)
 
     logfun(repo) <- function(pkg, ...) {
       loginnerfun(pkg, ..., errfile = errlogfile(repo),

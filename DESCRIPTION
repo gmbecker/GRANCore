@@ -1,11 +1,11 @@
 Package: GRANCore
 Type: Package
 Title: Classes and methods for GRANBase
-Version: 0.1.2
+Version: 0.2.0
 Author: Gabriel Becker[aut,cre], Dinakar Kulkarni [aut,ctb]
 Maintainer: Gabriel Becker <becker.gabriel@gene.com>
 Copyright: Genentech Inc
-Description: Provides the classes and methods for GRANRepository 
+Description: Provides the classes and methods for GRANRepository
     objects that are used within the GRAN build framework for R packages.
     This is primarily used by the GRANBase package and repositories
     that are created by it.

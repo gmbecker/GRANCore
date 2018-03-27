@@ -25,7 +25,8 @@ RepoBuildParam(basedir, repo_name = "current",
   email_opts = list(smtp_server = "localhost", smtp_port = 25, sender_email =
   paste0("gran", repo_name, "@localhost"), unsubscribers = NULL),
   repo_archive = file.path(destination, repo_name, "src", "contrib",
-  "Archive"))
+  "Archive"), repo_metadata_dir = file.path(destination, repo_name, "src",
+  "contrib", "Meta"))
 
 ResultsRow(name = NA_character_, building = TRUE, status = "ok",
   version = "0.0-0", lastAttempt = NA_character_,
@@ -113,6 +114,8 @@ be sent as? Defaults to "gran<repo_name>@localhost", \code{unsubscribers}:
 Vector of Perl-style regexes for unsubscribers - defaults to NULL.}
 
 \item{repo_archive}{Archive directory where older package sources will be saved}
+
+\item{repo_metadata_dir}{Directory containing metadata files}
 
 \item{name}{Name of the package}
 
