@@ -1,3 +1,4 @@
+
 #' logfile
 #'
 #' Retrieve the path to the full logfile for a GRAN repository
@@ -8,21 +9,18 @@
 #' @title Log file location of a GRAN (sub) repository
 #' @param repo a GRANRepository object
 #' @return file location of the full logfile
-#' @author Gabriel Becker
 #' @export
 setGeneric("logfile", function(repo) standardGeneric("logfile"))
 #' @rdname GRANRepository-accessors
 #' @aliases logfile,GRANRepository-method
 setMethod("logfile", "GRANRepository", function(repo) {
-    ret = logfile(param(repo))
-    if(!file.exists(dirname(ret)))
-        dir.create(dirname(ret), recursive = TRUE)
+    ret = param(repo)@logfile
+    .createDir(dirname(ret))
     ret})
 
 #' @rdname GRANRepository-accessors
 #' @aliases logfile,RepoBuildParam-method
 setMethod("logfile", "RepoBuildParam", function(repo) repo@logfile)
-
 
 #' errlogfile
 #' Retrieve the path to the errors-only logfile for a GRAN repository
@@ -32,33 +30,18 @@ setMethod("logfile", "RepoBuildParam", function(repo) repo@logfile)
 #' @title Log file location of a GRAN (sub) repository
 #' @param repo a GRANRepository object
 #' @return file location of the errors-only logfile
-#' @author Gabriel Becker
 #' @export
 setGeneric("errlogfile", function(repo) standardGeneric("errlogfile"))
 #' @rdname errlogfile-methods
 #' @aliases errlogfile,GRANRepository-method
 setMethod("errlogfile", "GRANRepository", function(repo) {
         ret = param(repo)@errlog
-    if(!file.exists(dirname(ret)))
-        dir.create(dirname(ret), recursive = TRUE)
-    ret})
+        .createDir(dirname(ret))
+        ret})
+
 #' @rdname errlogfile-methods
 #' @aliases errlogfile,RepoBuildParam-method
 setMethod("errlogfile", "RepoBuildParam", function(repo) repo@errlog)
-
-
-#' Retrieve the path to a GRAN (sub) repository
-#' @rdname location-methods
-#' @param repo A GRANRepository object.
-#' @aliases location,GRANREpository-method
-setMethod("location", "GRANRepository", function(repo) {
-    ret = file.path(repobase(repo), "src", "contrib")
-
-    if(!file.exists(ret))
-        dir.create(ret, recursive=TRUE)
-    normalizePath2(ret)
-})
-
 
 #' email_options
 #' Email options for sending build failure notifications
@@ -104,9 +87,8 @@ setGeneric("repobase", function(repo) standardGeneric("repobase"))
 #' @aliases repobase,GRANRepository-method
 #' @export
 setMethod("repobase", "GRANRepository", function(repo) {
-    ret = file.path(param(repo)@base_dir, param(repo)@repo_name)
-    if(!file.exists(ret))
-        dir.create(ret, recursive=TRUE)
+    ret <- file.path(param(repo)@base_dir, param(repo)@repo_name)
+    .createDir(ret)
     normalizePath2(ret)
 })
 
@@ -124,9 +106,8 @@ setGeneric("staging", function(repo) standardGeneric("staging"))
 #' @aliases staging,GRANRepository-method
 #' @export
 setMethod("staging", "GRANRepository", function(repo) {
-    ret = file.path(repobase(repo), "staging")
-    if(!file.exists(ret))
-        dir.create(ret, recursive=TRUE)
+    ret <- file.path(repobase(repo), "staging")
+    .createDir(ret)
     normalizePath2(ret)
 })
 
@@ -138,9 +119,8 @@ setGeneric("staging_logs", function(repo) standardGeneric("staging_logs"))
 #' @aliases staging_logs,GRANRepository-method
 #' @export
 setMethod("staging_logs", "GRANRepository", function(repo) {
-    ret = file.path(staging(repo), "logs")
-    if(!file.exists(ret))
-        dir.create(ret, recursive=TRUE)
+    ret <- file.path(staging(repo), "logs")
+    .createDir(ret)
     normalizePath2(ret)
 })
 
@@ -184,9 +164,48 @@ setGeneric("destination", function(repo) standardGeneric("destination"))
 #' @aliases destination,GRANRepository-method
 #' @export
 setMethod("destination", "GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base),
-                                   param(repo)@repo_name,  "src", "contrib"))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                   param(repo)@repo_name,  "src", "contrib")
+              .createDir(ret)
+              ret
+})
 
+
+#' make_windows_bins
+#' Return the logical that determines whether to build Windows binaries
+#'
+#' @rdname make_windows_bins-methods
+#' @param repo a GRANRepository object
+#' @return Logical indicating whether Windows binaries will be built
+#' @docType methods
+#' @export
+setGeneric("make_windows_bins", function(repo) standardGeneric("make_windows_bins"))
+#' @rdname make_windows_bins-methods
+#' @aliases make_windows_bins,GRANRepository-method
+#' @export
+setMethod("make_windows_bins", "GRANRepository",
+          function(repo) param(repo)@make_windows_bins )
+
+#' windowsbindir
+#' Return the full path to the location of the windows binary builds
+#'
+#' @rdname windowsbindir-methods
+#' @param repo a GRANRepository object
+#' @return Full path to the location of the windows binary builds
+#' @docType methods
+#' @export
+setGeneric("windowsbindir", function(repo) standardGeneric("windowsbindir"))
+#' @rdname windowsbindir-methods
+#' @aliases windowsbindir,GRANRepository-method
+#' @export
+setMethod("windowsbindir", "GRANRepository",
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                       param(repo)@repo_name,  "bin", "windows")
+              .createDir(ret)
+              ret
+          })
 
 #' archivedir
 #' Return the full path to the archive directory for the final repository
@@ -208,9 +227,7 @@ setMethod("archivedir", "GRANRepository",
             if (is.null(archive_dir) || identical(archive_dir, character(0))) {
               archive_dir <- file.path(destination(repo), "Archive")
             }
-            if(!file.exists(archive_dir)) {
-                dir.create(archive_dir, recursive = TRUE)
-            }
+            .createDir(archive_dir)
             return(archive_dir)
 })
 
@@ -233,9 +250,7 @@ setMethod("metadatadir", "GRANRepository",
             if (is.null(metadata_dir) || identical(metadata_dir, character(0))) {
               metadata_dir <- file.path(destination(repo), "Meta")
             }
-            if(!file.exists(metadata_dir)) {
-                dir.create(metadata_dir, recursive = TRUE)
-            }
+            .createDir(metadata_dir)
             return(metadata_dir)
 })
 
@@ -253,7 +268,11 @@ setGeneric("dest_base", function(repo) standardGeneric("dest_base"))
 #' @aliases dest_base,GRANRepository-method
 #' @export
 setMethod("dest_base","GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base)))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base))
+              .createDir(ret)
+              ret
+})
 
 
 #' check_result_dir
@@ -271,8 +290,12 @@ setGeneric("check_result_dir", function(repo) standardGeneric("check_result_dir"
 #' @aliases check_result_dir,GRANRepository-method
 #' @export
 setMethod("check_result_dir","GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base),
-                                   param(repo)@repo_name, "CheckResults" ))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                   param(repo)@repo_name, "CheckResults" )
+              .createDir(ret)
+              ret
+})
 
 
 #' backup_archive
@@ -288,8 +311,12 @@ setGeneric("backup_archive", function(repo) standardGeneric("backup_archive"))
 #' @aliases backup_archive, GRANRepository-method
 #' @export
 setMethod("backup_archive", "GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base),
-                                   param(repo)@repo_name, "Archive" ))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                   param(repo)@repo_name, "Archive" )
+              .createDir(ret)
+              ret
+})
 
 
 #' coverage_report_dir
@@ -307,8 +334,12 @@ setGeneric("coverage_report_dir", function(repo) standardGeneric("coverage_repor
 #' @aliases coverage_report_dir,GRANRepository-method
 #' @export
 setMethod("coverage_report_dir","GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base),
-                                   param(repo)@repo_name, "CovrReports" ))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                   param(repo)@repo_name, "CovrReports" )
+              .createDir(ret)
+              ret
+})
 
 #' pkg_doc_dir
 #' Return the path where test coverage reports for packages will be deployed
@@ -325,8 +356,12 @@ setGeneric("pkg_doc_dir", function(repo) standardGeneric("pkg_doc_dir"))
 #' @aliases pkg_doc_dir,GRANRepository-method
 #' @export
 setMethod("pkg_doc_dir","GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base),
-                                   param(repo)@repo_name, "PkgDocumentation" ))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                   param(repo)@repo_name, "PkgDocumentation" )
+              .createDir(ret)
+              ret
+})
 
 
 #' install_result_dir
@@ -344,8 +379,12 @@ setGeneric("install_result_dir", function(repo) standardGeneric("install_result_
 #' @aliases install_result_dir,GRANRepository-method
 #' @export
 setMethod("install_result_dir","GRANRepository",
-          function(repo) file.path(normalizePath2(param(repo)@dest_base),
-                                   param(repo)@repo_name, "InstallResults/" ))
+          function(repo) {
+              ret <- file.path(normalizePath2(param(repo)@dest_base),
+                                   param(repo)@repo_name, "InstallResults" )
+              .createDir(ret)
+              ret
+})
 
 
 #' repo_url
@@ -763,10 +802,11 @@ setGeneric("pkg_log_dir", function(x) standardGeneric("pkg_log_dir"))
 #' @aliases pkg_log_dir,RepoBuildParam
 #' @export
 setMethod("pkg_log_dir", "RepoBuildParam", function(x) {
-    file.path(normalizePath2(x@dest_base),
-              x@repo_name,
-              "SinglePkgLogs")
-
+    ret <- file.path(normalizePath2(x@dest_base),
+                    x@repo_name,
+                    "SinglePkgLogs")
+    .createDir(ret)
+    ret
 })
 
 #' @rdname GRANparams
