@@ -1,7 +1,7 @@
 Package: GRANCore
 Type: Package
 Title: Classes and methods for GRANBase
-Version: 0.2.0
+Version: 0.2.1
 Author: Gabriel Becker[aut,cre], Dinakar Kulkarni [aut,ctb]
 Maintainer: Gabriel Becker <becker.gabriel@gene.com>
 Copyright: Genentech Inc

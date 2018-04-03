@@ -444,6 +444,14 @@ setMethod("manifest<-", "GRANRepository",
 
 setMethod("manifest", "GRANRepository", function(x) x@manifest)
 
+
+#' @rdname GRANparams
+#' @aliases dep_repos,RepoBuildParam
+#' @export
+setMethod("dep_repos", "GRANRepository", function(x) {
+    dep_repos(manifest(x)@pkg_manifest)
+})
+
 ## only get manifest rows for pkgs in the 'session' by default
 ## override with session_only=FALSE if desired
 setMethod("manifest_df", "GRANRepository", function(x, ...) manifest_df(manifest(x), ...))
