@@ -58,6 +58,8 @@
 #' be sent as? Defaults to "gran<repo_name>@localhost", \code{unsubscribers}:
 #' Vector of Perl-style regexes for unsubscribers - defaults to NULL.
 #' @param repo_archive Archive directory where older package sources will be saved
+#' @param repo_metadata_dir Directory containing metadata files
+#' @param make_windows_bins Whether to make Windows binary packages
 #' @rdname repobuildparam
 #' @export
 
@@ -66,10 +68,10 @@ RepoBuildParam <- function(
     repo_name = "current",
     temp_repo = file.path(basedir, repo_name, "tmprepo"),
     temp_checkout = file.path(basedir, "tmpcheckout"),
-    errlog = file.path(basedir, repo_name, paste0("GRAN-errors-", repo_name,
-                       "-", Sys.Date(), ".log")),
-    logfile = file.path(basedir, repo_name, paste0("GRAN-log-", repo_name,
-                        "-", Sys.Date(), ".log")),
+    errlog = file.path(basedir, repo_name,
+                       paste0("GRAN", repo_name, "-error.log")),
+    logfile = file.path(basedir, repo_name,
+                        paste0("GRAN", repo_name, "-full.log")),
     check_note_ok = TRUE,
     check_warn_ok = TRUE,
     tempLibLoc = file.path(basedir, repo_name, "LibLoc"),
@@ -92,14 +94,17 @@ RepoBuildParam <- function(
                       sender_email = paste0("gran", repo_name, "@localhost"),
                       unsubscribers = NULL),
     repo_archive = file.path(destination, repo_name,
-                             "src", "contrib", "Archive")) {
+                             "src", "contrib", "Archive"),
+    repo_metadata_dir = file.path(destination, repo_name,
+                                  "src", "contrib", "Meta"),
+    make_windows_bins = TRUE) {
     if(!file.exists(basedir))
         dir.create(basedir, recursive = TRUE)
 
     basedir <- normalizePath2(basedir)
 
     prepDirStructure(basedir, repo_name, temp_repo, temp_checkout, tempLibLoc,
-                     destination)
+                     destination, logfile, errlog)
 
     if(check_test && !install_test)
         stop("Cannot run check test without install test")
@@ -129,7 +134,9 @@ RepoBuildParam <- function(
                 check_timeout = check_timeout,
                 email_notifications = email_notifications,
                 email_opts = email_opts,
-                repo_archive = repo_archive)
+                repo_archive = repo_archive,
+                repo_metadata_dir = repo_metadata_dir,
+                make_windows_bins = make_windows_bins)
 
     logfun(repo) <- function(pkg, ...) {
       loginnerfun(pkg, ..., errfile = errlogfile(repo),

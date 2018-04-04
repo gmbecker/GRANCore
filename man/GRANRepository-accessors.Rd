@@ -26,6 +26,3 @@ logfile
 \details{
 Retrieve the path to the full logfile for a GRAN repository
 }
-\author{
-Gabriel Becker
-}
