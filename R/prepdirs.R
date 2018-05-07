@@ -16,6 +16,7 @@
 #'   final repository to be built
 #' @param logfile Comprehensive GRAN log file
 #' @param errlogfile Error log file
+#' @note This function is not intended for use by the end user.
 #' @export
 prepDirStructure <- function(basedir, repo_name, temp_repo, temp_checkout,
                              tempLibLoc, destination, logfile, errlogfile) {

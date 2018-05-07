@@ -6,7 +6,11 @@
 #'
 #' @param repo repository
 #' @return a list suitable for use with RepoFromList
+#' @examples
+#' repo = GRANRepository(GithubManifest("gmbecker/switchr"), basedir = tempdir())
+#' lst = RepoToList(repo)
 #' @export
+#' @rdname tofromlist
 RepoToList = function(repo) {
   sl = names(getSlots(class(repo)))
   l = lapply(sl, function(x)
@@ -22,6 +26,9 @@ RepoToList = function(repo) {
 #' pairs for a GRANRepository object
 #' @return a GRANRepository object
 #' @export
+#' @examples
+#' repo2 = RepoFromList(lst)
+#' @rdname tofromlist
 RepoFromList = function(rlist) {
   do.call(new, c("GRANRepository", rlist))
 }
@@ -33,6 +40,7 @@ RepoFromList = function(rlist) {
 #'
 #' @param filename The file to load
 #' @export
+#' @rdname saveload
 loadRepo <- function(filename) {
   res = tryCatch(
     dget(filename),
@@ -65,9 +73,14 @@ loadRepo <- function(filename) {
 #' to load
 #'
 #' @param repo The GRANRepository object to save
-#' @param filename The destination file
 #' @return NULL
 #' @export
+#' @examples
+#' repo = GRANRepository(GithubManifest("gmbecker/rpath"), basedir = tempdir())
+#' fil = file.path(tempdir(), "repo.R")
+#' saveRepo(repo, fil)
+#' repo2 = loadRepo(fil)
+#' @rdname saveload
 saveRepo <- function(repo, filename) {
   dput(repo, filename)
 }

@@ -61,6 +61,8 @@
 #' @param repo_metadata_dir Directory containing metadata files
 #' @param make_windows_bins Whether to make Windows binary packages
 #' @rdname repobuildparam
+#' @examples
+#' rbp = RepoBuildParam(basedir = tempdir(), repo_name = "myrepo")
 #' @export
 
 RepoBuildParam <- function(

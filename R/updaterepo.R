@@ -1,10 +1,13 @@
 #' updateGRANRepoObject
 #'
-#' Update the GRAN repo object with newer information
+#' @description Update the GRAN repo object with newer information. This is called
+#' internally by loadRepo to ensure that the resulting repo doesn't
+#' have stale logging closures and the like.
 #'
 #' @param object The GRAN repo object
 #' @param ... Other parameters from RepoBuildParam
-#' @export
+#' @note This function is cal not intended for use by the end user. This
+#'     is called internally by loadRepo.
 updateGRANRepoObject <- function(object, ...) {
     param = RepoBuildParam(basedir = object@baseDir,
                            temp_repo = object@tempRepo,

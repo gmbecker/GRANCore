@@ -8,6 +8,9 @@
 #' @param param A RepoBuildParam object controlling the location and behavior of
 #' the repository being built
 #' @param ... Passed through to the default value of \code{param}
+#' @examples
+#' man = GithubManifest("gmbecker/fastdigest")
+#' repo = GRANRepository(man, basedir = tempdir())
 #' @rdname GRANRepository
 #' @export
 GRANRepository <- function(manifest, results, param = RepoBuildParam(...), ...) {

@@ -23,3 +23,7 @@ contrib.url
 A generic for contrib.url so that available.packages et al can
 interact with GRANRepository objects.
 }
+\examples{
+repo = GRANRepository(GithubManifest("gmbecker/fastdigest"), basedir = tempdir())
+contrib.url(repo)
+}

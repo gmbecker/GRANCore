@@ -38,3 +38,8 @@ objects should be passed to the contriburl argument.}
 available.packages
 A generic for available.packages and a method for GRANRepository objects
 }
+\examples{
+repo = GRANRepository(GithubManifest("gmbecker/fastdigest"), basedir = tempdir())
+## none because the repository hasn't been built...
+available.packages(repo)
+}

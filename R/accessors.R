@@ -1,7 +1,7 @@
 
-#' logfile
+#' Accessors
 #'
-#' Retrieve the path to the full logfile for a GRAN repository
+#' Set or retrieve the relevant values from a GRANRepository object
 #'
 #' @docType methods
 #' @aliases logfile-method,GRANRepository
@@ -9,6 +9,45 @@
 #' @title Log file location of a GRAN (sub) repository
 #' @param repo a GRANRepository object
 #' @return file location of the full logfile
+#' @examples
+#' repo = GRANRepository(GithubManifest("gmbecker/fastdigest"), basedir = tempdir())
+#' # parameter object
+#' param(repo)
+#' ##fundamental sub-objects
+#' manifest(repo)
+#' repo_results(repo)
+#' ##important directories
+#' repobase(repo)
+#' staging(repo)
+#' temp_lib(repo)
+#' notrack(repo)
+#' destination(repo)
+#' dest_base(repo)
+#' windowsbindir(repo)
+#' archivedir(repo)
+#' metadatadir(repo)
+#' check_result_dir(repo)
+#' backup_archive(repo)
+#' coverage_report_dir(repo)
+#' pkg_doc_dir(repo)
+#' install_result_dir(repo)
+#' repo_url(repo)
+#' checkout_dir(repo)
+#' ## logging
+#' logfile(repo)
+#' errlogfile(repo)
+#' staging_logs(repo)
+#' pkg_log_dir(repo)
+#' pkg_log_file("switchr", repo)
+#' ## email and other behavior
+#' email_options(repo)
+#' email_notify(repo)
+#' ## miscellaneous
+#' make_windows_bins(repo)
+#' use_cran_granbase(repo)
+#' check_timeout(repo)
+#' build_timeout(repo)
+#' 
 #' @export
 setGeneric("logfile", function(repo) standardGeneric("logfile"))
 #' @rdname GRANRepository-accessors
@@ -445,7 +484,7 @@ setMethod("manifest<-", "GRANRepository",
 setMethod("manifest", "GRANRepository", function(x) x@manifest)
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases dep_repos,RepoBuildParam
 #' @export
 setMethod("dep_repos", "GRANRepository", function(x) {
@@ -518,54 +557,54 @@ setMethod("param<-", "GRANRepository",
 #' on a GRANRepository object.
 #' @seealso \code{\link{RepoBuildParam}}
 #' @docType methods
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("repo_name", function(x) standardGeneric("repo_name"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases repo_name,GRANRepository
 setMethod("repo_name", "GRANRepository",
           function(x) param(x)@repo_name)
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("temp_repo", function(x) standardGeneric("temp_repo"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases temp_repo,GRANRepository
 setMethod("temp_repo", "GRANRepository",
           function(x) param(x)@temp_repo)
 
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("check_warn_ok", function(x) standardGeneric("check_warn_ok"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases check_warn_ok,GRANRepository
 setMethod("check_warn_ok", "GRANRepository",
           function(x)  param(x)@check_warn_ok)
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @export
 setGeneric("check_note_ok", function(x) standardGeneric("check_note_ok"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases check_note_ok,GRANRepository
 setMethod("check_note_ok", "GRANRepository",
           function(x)  param(x)@check_note_ok)
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("suspended_pkgs", function(x) standardGeneric("suspended_pkgs"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases suspended_pkgs,GRANRepository
 setMethod("suspended_pkgs", "GRANRepository",
           function(x) param(x)@suspended)
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @param value The new parameter value
 #' @export
 setGeneric("suspended_pkgs<-", function(x, value) standardGeneric("suspended_pkgs<-"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases suspended_pkgs<-,GRANRepository
 setMethod("suspended_pkgs<-", "GRANRepository",
           function(x, value) {
@@ -574,12 +613,12 @@ setMethod("suspended_pkgs<-", "GRANRepository",
               })
 
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases sh_init_script,GRANRepository
 #' @export
 setMethod("sh_init_script", "GRANRepository",
           function(x) param(x)@shell_init)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases sh_init_script<-,GRANRepository
 #'@export
 
@@ -590,44 +629,44 @@ setMethod("sh_init_script<-", "GRANRepository",
               })
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("extra_fun", function(x) standardGeneric("extra_fun"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setMethod("extra_fun", "GRANRepository",
           function(x)  param(x)@extra_fun)
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("check_test_on", function(x) standardGeneric("check_test_on"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases check_test_on,RepoBuildParam
 setMethod("check_test_on", "RepoBuildParam", function(x) x@check_test)
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases check_test_on,GRANRepository
 setMethod("check_test_on", "GRANRepository", function(x) check_test_on(param(x)))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("install_test_on", function(x) standardGeneric("install_test_on"))
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases install_test_on,RepoBuildParam
 
 setMethod("install_test_on", "RepoBuildParam", function(x) x@install_test)
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases install_test_on,GRANRepository
 setMethod("install_test_on", "GRANRepository", function(x) install_test_on(param(x)))
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases logfun,GRANRepository
 #' @export
 setMethod("logfun", "GRANRepository",
           function(x) logfun(param(x)))
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases logfun<-,GRANRepository
 #' @export
 setMethod("logfun<-", "GRANRepository",
@@ -639,61 +678,25 @@ setMethod("logfun<-", "GRANRepository",
               })
 
 
-#' addPkg
-#'
-#' Add a package to the manifest for a GRANRepository
-#' @param x A GRANRepository object
-#' @param \dots passed to manifest method for addPkg
-#' @param rows data.frame or unspecified. passed to manifest method for addPkg
-#' @param versions data.frame passed to manifest method for addPkg
-#' @param replace logical. Should the information in \code{...}/\code{rows}
-#' replace existing rows for the same pacakge? Defaults to FALSE, in which case
-#' an error is thrown.
-#' @return \code{x} with the specified package(s) added to the associated manifest
-#' @export
-#' @importMethodsFrom switchr addPkg
-setMethod("addPkg", "GRANRepository",
-          function(x, ..., rows, versions, replace = FALSE) {
-              if(any(manifest_df(rows)$name %in% manifest_df(x)$name) && !replace)
-                  stop("Some of the packages to be added already appear in the repo manifest")
-              manifest(x) = addPkg(manifest(x), ..., rows = rows, versions = versions,
-                                   replace = replace)
-              new = which(!manifest_df(x)$name %in% repo_results(x)$name)
-              if(length(new)) {
-                  oldres = repo_results(x)
-                  newres = ResultsRow(name = manifest_df(x)$name[new])
-                  oldres = oldres[,names(newres)]
-                  repo_results(x) = rbind(oldres, newres)
-              }
-              ## fail fast and hard if the manifest and results df don't line up
-              stopifnot(identical(manifest_df(x)$name, repo_results(x)$name))
-              x
-          })
 
 
-
-#' @rdname GRANparams
-#' @return logical indicating whether GRANBase should be installed
-#' from CRAN during the repository build process. If FALSE, or if GRANBase
-#' can't be found on your CRAN mirror, GRANBase will be checked out and built
-#' from github.
-#'
+#' @rdname GRANRepository-accessors
 #' @docType methods
 #' @export
 setGeneric("use_cran_granbase", function(x) stop("This object doesn't contain repository build parameters"))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @docType methods
 #' @export
 setGeneric("use_cran_granbase<-", function(x, value) stop("This object doesn't contain repository build parameters"))
 
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases use_cran_granbase,GRANRepository
 #' @export
 setMethod("use_cran_granbase", "GRANRepository",
           function(x) param(x)@use_cran_granbase)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases use_cran_granbase<-,GRANRepository
 #'@export
 
@@ -703,12 +706,12 @@ setMethod("use_cran_granbase<-", "GRANRepository",
               x
               })
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases use_cran_granbase,RepoBuildParam
 #' @export
 setMethod("use_cran_granbase", "RepoBuildParam",
           function(x) x@use_cran_granbase)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases use_cran_granbase<-,RepoBuildParam
 #'@export
 
@@ -719,21 +722,21 @@ setMethod("use_cran_granbase<-", "RepoBuildParam",
               })
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("check_timeout", function(x) stop("This object doesn't contain repository build parameters"))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @docType methods
 #' @export
 setGeneric("check_timeout<-", function(x, value) stop("This object doesn't contain repository build parameters"))
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases check_timeout,GRANRepository
 #' @export
 setMethod("check_timeout", "GRANRepository",
           function(x) param(x)@check_timeout)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases check_timeout<-,GRANRepository
 #'@export
 
@@ -744,12 +747,12 @@ setMethod("check_timeout<-", "GRANRepository",
               })
 
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases check_timeout,RepoBuildParam
 #' @export
 setMethod("check_timeout", "RepoBuildParam",
           function(x) x@check_timeout)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases check_timeout<-,RepoBuildParam
 #'@export
 
@@ -760,22 +763,22 @@ setMethod("check_timeout<-", "RepoBuildParam",
               })
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @export
 setGeneric("build_timeout", function(x) stop("This object doesn't contain repository build parameters"))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @docType methods
 #' @export
 setGeneric("build_timeout<-", function(x, value) stop("This object doesn't contain repository build parameters"))
 
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases build_timeout,GRANRepository
 #' @export
 setMethod("build_timeout", "GRANRepository",
           function(x) param(x)@build_timeout)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases build_timeout<-,GRANRepository
 #'@export
 
@@ -786,12 +789,12 @@ setMethod("build_timeout<-", "GRANRepository",
               })
 
 
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases build_timeout,RepoBuildParam
 #' @export
 setMethod("build_timeout", "RepoBuildParam",
           function(x) x@build_timeout)
-#'@rdname GRANparams
+#'@rdname GRANRepository-accessors
 #' @aliases build_timeout<-,RepoBuildParam
 #'@export
 
@@ -801,12 +804,12 @@ setMethod("build_timeout<-", "RepoBuildParam",
               x
               })
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @docType methods
 #' @export
 setGeneric("pkg_log_dir", function(x) standardGeneric("pkg_log_dir"))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases pkg_log_dir,RepoBuildParam
 #' @export
 setMethod("pkg_log_dir", "RepoBuildParam", function(x) {
@@ -817,24 +820,24 @@ setMethod("pkg_log_dir", "RepoBuildParam", function(x) {
     ret
 })
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases pkg_log_dir,GRANRepository
 #' @export
 setMethod("pkg_log_dir", "GRANRepository", function(x) pkg_log_dir(param(x)))
 
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @param pkg The package name, accepted by pkg_log_file.
 #' @docType methods
 #' @export
 setGeneric("pkg_log_file", function(pkg, x) standardGeneric("pkg_log_file"))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases pkg_log_file,RepoBuildParam
 #' @export
 setMethod("pkg_log_file", c(x = "RepoBuildParam"), function(pkg, x) file.path(pkg_log_dir(x), paste0(pkg, ".log")))
 
-#' @rdname GRANparams
+#' @rdname GRANRepository-accessors
 #' @aliases pkg_log_file,GRANRepository
 #' @export
 setMethod("pkg_log_file", c(x = "GRANRepository"), function(pkg,x ) pkg_log_file(pkg, param(x)))
@@ -845,6 +848,9 @@ setMethod("pkg_log_file", c(x = "GRANRepository"), function(pkg,x ) pkg_log_file
 #' @param repos A repository to extract the contrib url from
 #' @param type The type of package repository it is
 #' @docType methods
+#' @examples
+#' repo = GRANRepository(GithubManifest("gmbecker/fastdigest"), basedir = tempdir())
+#' contrib.url(repo)
 #' @export
 #' @rdname contriburl
 setGeneric("contrib.url", contrib.url)
@@ -865,6 +871,10 @@ setMethod("contrib.url", "GRANRepository", function(repos, type) {
 #' objects should be passed to the contriburl argument.
 #' @rdname availpkgs
 #' @docType methods
+#' @examples
+#' repo = GRANRepository(GithubManifest("gmbecker/fastdigest"), basedir = tempdir())
+#' ## none because the repository hasn't been built...
+#' available.packages(repo)
 #' @export
 setGeneric("available.packages", function(contriburl, method, fields = NULL,
                                           type = getOption("pkgType"),

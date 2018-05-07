@@ -22,3 +22,7 @@ the repository being built}
 A constructor for the \code{GRANRepository} class of S4 objects representing
 individual repositories
 }
+\examples{
+man = GithubManifest("gmbecker/fastdigest")
+repo = GRANRepository(man, basedir = tempdir())
+}

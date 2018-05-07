@@ -12,5 +12,11 @@ updateGRANRepoObject(object, ...)
 \item{...}{Other parameters from RepoBuildParam}
 }
 \description{
-Update the GRAN repo object with newer information
+Update the GRAN repo object with newer information. This is called
+internally by loadRepo to ensure that the resulting repo doesn't
+have stale logging closures and the like.
+}
+\note{
+This function is cal not intended for use by the end user. This
+    is called internally by loadRepo.
 }

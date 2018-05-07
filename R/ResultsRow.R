@@ -17,6 +17,9 @@
 #' @param suspended Is the package suspended?
 #' @return data.frame
 #' @rdname repobuildparam
+#' @examples
+#' row = ResultsRow(name = "mypkg")
+#' @note This function is not intended for use by the end user.
 #' @export
 ResultsRow <- function(name = NA_character_,
     building = TRUE,

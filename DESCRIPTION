@@ -1,6 +1,6 @@
 Package: GRANCore
 Type: Package
-Title: Classes and methods for GRANBase
+Title: Classes and Methods for GRANBase
 Version: 0.2.1
 Author: Gabriel Becker[aut,cre], Dinakar Kulkarni [aut,ctb]
 Maintainer: Gabriel Becker <becker.gabriel@gene.com>

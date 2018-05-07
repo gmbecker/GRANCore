@@ -33,3 +33,6 @@ final repository to be built}
 \description{
 Initialize the directory structure for the GRAN repo
 }
+\note{
+This function is not intended for use by the end user.
+}

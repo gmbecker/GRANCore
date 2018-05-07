@@ -6,6 +6,86 @@
 \alias{logfile-method,GRANRepository}
 \alias{logfile,GRANRepository-method}
 \alias{logfile,RepoBuildParam-method}
+\alias{dep_repos,GRANRepository-method}
+\alias{dep_repos,RepoBuildParam}
+\alias{repo_name}
+\alias{repo_name,GRANRepository-method}
+\alias{repo_name,GRANRepository}
+\alias{temp_repo}
+\alias{temp_repo,GRANRepository-method}
+\alias{temp_repo,GRANRepository}
+\alias{check_warn_ok}
+\alias{check_warn_ok,GRANRepository-method}
+\alias{check_warn_ok,GRANRepository}
+\alias{check_note_ok}
+\alias{check_note_ok,GRANRepository-method}
+\alias{check_note_ok,GRANRepository}
+\alias{suspended_pkgs}
+\alias{suspended_pkgs,GRANRepository-method}
+\alias{suspended_pkgs,GRANRepository}
+\alias{suspended_pkgs<-}
+\alias{suspended_pkgs<-,GRANRepository-method}
+\alias{suspended_pkgs<-,GRANRepository}
+\alias{sh_init_script,GRANRepository-method}
+\alias{sh_init_script,GRANRepository}
+\alias{sh_init_script<-,GRANRepository-method}
+\alias{sh_init_script<-,GRANRepository}
+\alias{extra_fun}
+\alias{extra_fun,GRANRepository-method}
+\alias{check_test_on}
+\alias{check_test_on,RepoBuildParam-method}
+\alias{check_test_on,RepoBuildParam}
+\alias{check_test_on,GRANRepository-method}
+\alias{check_test_on,GRANRepository}
+\alias{install_test_on}
+\alias{install_test_on,RepoBuildParam-method}
+\alias{install_test_on,RepoBuildParam}
+\alias{install_test_on,GRANRepository-method}
+\alias{install_test_on,GRANRepository}
+\alias{logfun,GRANRepository-method}
+\alias{logfun,GRANRepository}
+\alias{logfun<-,GRANRepository-method}
+\alias{logfun<-,GRANRepository}
+\alias{use_cran_granbase}
+\alias{use_cran_granbase<-}
+\alias{use_cran_granbase,GRANRepository-method}
+\alias{use_cran_granbase,GRANRepository}
+\alias{use_cran_granbase<-,GRANRepository-method}
+\alias{use_cran_granbase<-,GRANRepository}
+\alias{use_cran_granbase,RepoBuildParam-method}
+\alias{use_cran_granbase,RepoBuildParam}
+\alias{use_cran_granbase<-,RepoBuildParam-method}
+\alias{use_cran_granbase<-,RepoBuildParam}
+\alias{check_timeout}
+\alias{check_timeout<-}
+\alias{check_timeout,GRANRepository-method}
+\alias{check_timeout,GRANRepository}
+\alias{check_timeout<-,GRANRepository-method}
+\alias{check_timeout<-,GRANRepository}
+\alias{check_timeout,RepoBuildParam-method}
+\alias{check_timeout,RepoBuildParam}
+\alias{check_timeout<-,RepoBuildParam-method}
+\alias{check_timeout<-,RepoBuildParam}
+\alias{build_timeout}
+\alias{build_timeout<-}
+\alias{build_timeout,GRANRepository-method}
+\alias{build_timeout,GRANRepository}
+\alias{build_timeout<-,GRANRepository-method}
+\alias{build_timeout<-,GRANRepository}
+\alias{build_timeout,RepoBuildParam-method}
+\alias{build_timeout,RepoBuildParam}
+\alias{build_timeout<-,RepoBuildParam-method}
+\alias{build_timeout<-,RepoBuildParam}
+\alias{pkg_log_dir}
+\alias{pkg_log_dir,RepoBuildParam-method}
+\alias{pkg_log_dir,RepoBuildParam}
+\alias{pkg_log_dir,GRANRepository-method}
+\alias{pkg_log_dir,GRANRepository}
+\alias{pkg_log_file}
+\alias{pkg_log_file,ANY,RepoBuildParam-method}
+\alias{pkg_log_file,RepoBuildParam}
+\alias{pkg_log_file,ANY,GRANRepository-method}
+\alias{pkg_log_file,GRANRepository}
 \title{Log file location of a GRAN (sub) repository}
 \usage{
 logfile(repo)
@@ -13,16 +93,168 @@ logfile(repo)
 \S4method{logfile}{GRANRepository}(repo)
 
 \S4method{logfile}{RepoBuildParam}(repo)
+
+\S4method{dep_repos}{GRANRepository}(x)
+
+repo_name(x)
+
+\S4method{repo_name}{GRANRepository}(x)
+
+temp_repo(x)
+
+\S4method{temp_repo}{GRANRepository}(x)
+
+check_warn_ok(x)
+
+\S4method{check_warn_ok}{GRANRepository}(x)
+
+check_note_ok(x)
+
+\S4method{check_note_ok}{GRANRepository}(x)
+
+suspended_pkgs(x)
+
+\S4method{suspended_pkgs}{GRANRepository}(x)
+
+suspended_pkgs(x) <- value
+
+\S4method{suspended_pkgs}{GRANRepository}(x) <- value
+
+\S4method{sh_init_script}{GRANRepository}(x)
+
+\S4method{sh_init_script}{GRANRepository}(x) <- value
+
+extra_fun(x)
+
+\S4method{extra_fun}{GRANRepository}(x)
+
+check_test_on(x)
+
+\S4method{check_test_on}{RepoBuildParam}(x)
+
+\S4method{check_test_on}{GRANRepository}(x)
+
+install_test_on(x)
+
+\S4method{install_test_on}{RepoBuildParam}(x)
+
+\S4method{install_test_on}{GRANRepository}(x)
+
+\S4method{logfun}{GRANRepository}(x)
+
+\S4method{logfun}{GRANRepository}(x) <- value
+
+use_cran_granbase(x)
+
+use_cran_granbase(x) <- value
+
+\S4method{use_cran_granbase}{GRANRepository}(x)
+
+\S4method{use_cran_granbase}{GRANRepository}(x) <- value
+
+\S4method{use_cran_granbase}{RepoBuildParam}(x)
+
+\S4method{use_cran_granbase}{RepoBuildParam}(x) <- value
+
+check_timeout(x)
+
+check_timeout(x) <- value
+
+\S4method{check_timeout}{GRANRepository}(x)
+
+\S4method{check_timeout}{GRANRepository}(x) <- value
+
+\S4method{check_timeout}{RepoBuildParam}(x)
+
+\S4method{check_timeout}{RepoBuildParam}(x) <- value
+
+build_timeout(x)
+
+build_timeout(x) <- value
+
+\S4method{build_timeout}{GRANRepository}(x)
+
+\S4method{build_timeout}{GRANRepository}(x) <- value
+
+\S4method{build_timeout}{RepoBuildParam}(x)
+
+\S4method{build_timeout}{RepoBuildParam}(x) <- value
+
+pkg_log_dir(x)
+
+\S4method{pkg_log_dir}{RepoBuildParam}(x)
+
+\S4method{pkg_log_dir}{GRANRepository}(x)
+
+pkg_log_file(pkg, x)
+
+\S4method{pkg_log_file}{ANY,RepoBuildParam}(pkg, x)
+
+\S4method{pkg_log_file}{ANY,GRANRepository}(pkg, x)
 }
 \arguments{
 \item{repo}{a GRANRepository object}
+
+\item{x}{A GRANRepository object}
+
+\item{value}{The new parameter value}
+
+\item{pkg}{The package name, accepted by pkg_log_file.}
 }
 \value{
 file location of the full logfile
 }
 \description{
-logfile
+Accessors
+
+Get or set individual parameters on a GRANRepository object
 }
 \details{
-Retrieve the path to the full logfile for a GRAN repository
+Set or retrieve the relevant values from a GRANRepository object
+
+These functions get or set individual repository build parameters
+on a GRANRepository object.
+}
+\examples{
+repo = GRANRepository(GithubManifest("gmbecker/fastdigest"), basedir = tempdir())
+# parameter object
+param(repo)
+##fundamental sub-objects
+manifest(repo)
+repo_results(repo)
+##important directories
+repobase(repo)
+staging(repo)
+temp_lib(repo)
+notrack(repo)
+destination(repo)
+dest_base(repo)
+windowsbindir(repo)
+archivedir(repo)
+metadatadir(repo)
+check_result_dir(repo)
+backup_archive(repo)
+coverage_report_dir(repo)
+pkg_doc_dir(repo)
+install_result_dir(repo)
+repo_url(repo)
+checkout_dir(repo)
+## logging
+logfile(repo)
+errlogfile(repo)
+staging_logs(repo)
+pkg_log_dir(repo)
+pkg_log_file("switchr", repo)
+## email and other behavior
+email_options(repo)
+email_notify(repo)
+## miscellaneous
+make_windows_bins(repo)
+use_cran_granbase(repo)
+check_timeout(repo)
+build_timeout(repo)
+
+}
+\seealso{
+\code{\link{RepoBuildParam}}
 }
