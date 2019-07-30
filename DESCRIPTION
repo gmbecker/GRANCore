@@ -13,4 +13,4 @@ License: Artistic-2.0
 Depends: R (>= 3.1.0), switchr (>= 0.9.28), methods
 URL: https://github.com/gmbecker/GRANCore
 BugReports: https://github.com/gmbecker/GRANCore/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

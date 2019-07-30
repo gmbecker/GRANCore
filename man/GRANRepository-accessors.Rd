@@ -206,8 +206,6 @@ file location of the full logfile
 }
 \description{
 Accessors
-
-Get or set individual parameters on a GRANRepository object
 }
 \details{
 Set or retrieve the relevant values from a GRANRepository object

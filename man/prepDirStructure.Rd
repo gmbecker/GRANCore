@@ -24,7 +24,7 @@ source code}
 for use during the testing process}
 
 \item{destination}{Base location (not including repository name) of the
-final repository to be built}
+final repository to be built.}
 
 \item{logfile}{Comprehensive GRAN log file}
 

@@ -24,8 +24,6 @@ a GRANRepository object
 Utility to transform a GRANRepository object into a list
 so that repos saved using GRANBase can be loaded by GRAN
 without requiring GRANBase
-
-Create a GRANRepository object from a list
 }
 \examples{
 repo = GRANRepository(GithubManifest("gmbecker/switchr"), basedir = tempdir())

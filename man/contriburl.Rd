@@ -11,7 +11,8 @@ interact with GRANRepository objects.}
 \usage{
 contrib.url(repos, type = getOption("pkgType"))
 
-\S4method{contrib.url}{GRANRepository}(repos, type = getOption("pkgType"))
+\S4method{contrib.url}{GRANRepository}(repos,
+  type = getOption("pkgType"))
 }
 \arguments{
 \item{repos}{A repository to extract the contrib url from}

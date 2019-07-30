@@ -10,10 +10,11 @@
 \usage{
 ResultsRow(name = NA_character_, building = TRUE, status = "ok",
   version = "0.0-0", lastAttempt = NA_character_,
-  lastAttemptVersion = NA_character_, lastAttemptStatus = NA_character_,
-  lastbuilt = NA_character_, lastbuiltversion = NA_character_,
-  lastbuiltstatus = NA_character_, buildReason = NA_character_,
-  maintainer = NA_character_, suspended = FALSE)
+  lastAttemptVersion = NA_character_,
+  lastAttemptStatus = NA_character_, lastbuilt = NA_character_,
+  lastbuiltversion = NA_character_, lastbuiltstatus = NA_character_,
+  buildReason = NA_character_, maintainer = NA_character_,
+  suspended = FALSE)
 
 RepoBuildParam(basedir, repo_name = "current",
   temp_repo = file.path(basedir, repo_name, "tmprepo"),
@@ -28,11 +29,11 @@ RepoBuildParam(basedir, repo_name = "current",
   install_test = TRUE, check_test = TRUE, use_cran_granbase = TRUE,
   archive_timing = 2, archive_retries = 2, build_timeout = 10 * 60,
   check_timeout = 15 * 60, email_notifications = FALSE,
-  email_opts = list(smtp_server = "localhost", smtp_port = 25, sender_email =
-  paste0("gran", repo_name, "@localhost"), unsubscribers = NULL),
-  repo_archive = file.path(destination, repo_name, "src", "contrib",
-  "Archive"), repo_metadata_dir = file.path(destination, repo_name, "src",
-  "contrib", "Meta"), make_windows_bins = TRUE)
+  email_opts = list(smtp_server = "localhost", smtp_port = 25,
+  sender_email = paste0("gran", repo_name, "@localhost"), unsubscribers =
+  NULL), repo_archive = file.path(destination, repo_name, "src",
+  "contrib", "Archive"), repo_metadata_dir = file.path(destination,
+  repo_name, "src", "contrib", "Meta"), make_windows_bins = TRUE)
 }
 \arguments{
 \item{name}{Name of the package}
@@ -91,7 +92,8 @@ for use during the testing process}
 \item{extra_fun}{currently ignored}
 
 \item{destination}{Base location (not including repository name) of the
-final repository to be built}
+final repository to be built. NOTE: GRANBase:::buildReportURL() expects
+this argument to have a trailing slash.}
 
 \item{auth}{character. Authentication information required to add packages
 to the manifest.}
