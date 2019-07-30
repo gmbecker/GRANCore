@@ -24,7 +24,8 @@
 #'   for use during the testing process
 #' @param extra_fun currently ignored
 #' @param destination Base location (not including repository name) of the
-#'   final repository to be built
+#'   final repository to be built. NOTE: GRANBase:::buildReportURL() expects
+#'   this argument to have a trailing slash.
 #' @param auth character. Authentication information required to add packages
 #'   to the manifest.
 #' @param dest_url The base URL the destination directory corresponds to. The

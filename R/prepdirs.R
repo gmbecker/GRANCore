@@ -13,7 +13,7 @@
 #' @param tempLibLoc Location to create the temporary installed package library
 #'   for use during the testing process
 #' @param destination Base location (not including repository name) of the
-#'   final repository to be built
+#'   final repository to be built.
 #' @param logfile Comprehensive GRAN log file
 #' @param errlogfile Error log file
 #' @note This function is not intended for use by the end user.
