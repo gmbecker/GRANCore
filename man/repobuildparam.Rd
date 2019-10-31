@@ -33,7 +33,8 @@ RepoBuildParam(basedir, repo_name = "current",
   sender_email = paste0("gran", repo_name, "@localhost"), unsubscribers =
   NULL), repo_archive = file.path(destination, repo_name, "src",
   "contrib", "Archive"), repo_metadata_dir = file.path(destination,
-  repo_name, "src", "contrib", "Meta"), make_windows_bins = TRUE)
+  repo_name, "src", "contrib", "Meta"), make_windows_bins = TRUE,
+  platform = "", r_version = "", bioc_version = "")
 }
 \arguments{
 \item{name}{Name of the package}
@@ -145,6 +146,12 @@ Vector of Perl-style regexes for unsubscribers - defaults to NULL.}
 \item{repo_metadata_dir}{Directory containing metadata files}
 
 \item{make_windows_bins}{Whether to make Windows binary packages}
+
+\item{platform}{Name of platform this GRANRepository is being build on}
+
+\item{r_version}{R version for this GRANRepository}
+
+\item{bioc_version}{Bioconductor version for this GRANRepository}
 }
 \value{
 data.frame

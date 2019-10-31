@@ -86,6 +86,24 @@
 \alias{pkg_log_file,RepoBuildParam}
 \alias{pkg_log_file,ANY,GRANRepository-method}
 \alias{pkg_log_file,GRANRepository}
+\alias{platform}
+\alias{platform<-}
+\alias{platform,GRANRepository-method}
+\alias{platform,GRANRepository}
+\alias{platform<-,GRANRepository-method}
+\alias{platform<-,GRANRepository}
+\alias{r_version}
+\alias{r_version<-}
+\alias{r_version,GRANRepository-method}
+\alias{r_version,GRANRepository}
+\alias{r_version<-,GRANRepository-method}
+\alias{r_version<-,GRANRepository}
+\alias{bioc_version}
+\alias{bioc_version<-}
+\alias{bioc_version,GRANRepository-method}
+\alias{bioc_version,GRANRepository}
+\alias{bioc_version<-,GRANRepository-method}
+\alias{bioc_version<-,GRANRepository}
 \title{Log file location of a GRAN (sub) repository}
 \usage{
 logfile(repo)
@@ -191,6 +209,30 @@ pkg_log_file(pkg, x)
 \S4method{pkg_log_file}{ANY,RepoBuildParam}(pkg, x)
 
 \S4method{pkg_log_file}{ANY,GRANRepository}(pkg, x)
+
+platform(x)
+
+platform(x) <- value
+
+\S4method{platform}{GRANRepository}(x)
+
+\S4method{platform}{GRANRepository}(x) <- value
+
+r_version(x)
+
+r_version(x) <- value
+
+\S4method{r_version}{GRANRepository}(x)
+
+\S4method{r_version}{GRANRepository}(x) <- value
+
+bioc_version(x)
+
+bioc_version(x) <- value
+
+\S4method{bioc_version}{GRANRepository}(x)
+
+\S4method{bioc_version}{GRANRepository}(x) <- value
 }
 \arguments{
 \item{repo}{a GRANRepository object}
@@ -251,6 +293,9 @@ make_windows_bins(repo)
 use_cran_granbase(repo)
 check_timeout(repo)
 build_timeout(repo)
+platform(repo)
+r_version(repo)
+bioc_version(repo)
 
 }
 \seealso{

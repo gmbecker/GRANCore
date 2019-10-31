@@ -61,6 +61,9 @@
 #' @param repo_archive Archive directory where older package sources will be saved
 #' @param repo_metadata_dir Directory containing metadata files
 #' @param make_windows_bins Whether to make Windows binary packages
+#' @param platform Name of platform this GRANRepository is being build on
+#' @param r_version R version for this GRANRepository
+#' @param bioc_version Bioconductor version for this GRANRepository
 #' @rdname repobuildparam
 #' @examples
 #' rbp = RepoBuildParam(basedir = tempdir(), repo_name = "myrepo")
@@ -100,7 +103,10 @@ RepoBuildParam <- function(
                              "src", "contrib", "Archive"),
     repo_metadata_dir = file.path(destination, repo_name,
                                   "src", "contrib", "Meta"),
-    make_windows_bins = TRUE) {
+    make_windows_bins = TRUE,
+    platform = "",
+    r_version = "",
+    bioc_version = "") {
     if(!file.exists(basedir))
         dir.create(basedir, recursive = TRUE)
 
@@ -139,7 +145,10 @@ RepoBuildParam <- function(
                 email_opts = email_opts,
                 repo_archive = repo_archive,
                 repo_metadata_dir = repo_metadata_dir,
-                make_windows_bins = make_windows_bins)
+                make_windows_bins = make_windows_bins,
+		platform = platform,
+		r_version = r_version,
+		bioc_version = bioc_version)
 
     logfun(repo) <- function(pkg, ...) {
       loginnerfun(pkg, ..., errfile = errlogfile(repo),

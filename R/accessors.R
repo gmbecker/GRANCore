@@ -47,6 +47,9 @@
 #' use_cran_granbase(repo)
 #' check_timeout(repo)
 #' build_timeout(repo)
+#' platform(repo)
+#' r_version(repo)
+#' bioc_version(repo)
 #' 
 #' @export
 setGeneric("logfile", function(repo) standardGeneric("logfile"))
@@ -913,3 +916,75 @@ setMethod("available.packages", "GRANRepository",
                              filters = filters,
                              repos = NULL)
 })
+
+#' @rdname GRANRepository-accessors
+#' @export
+setGeneric("platform", function(x) standardGeneric("platform"))
+
+#' @rdname GRANRepository-accessors
+#' @docType methods
+#' @export
+setGeneric("platform<-", function(x, value) standardGeneric("platform<-"))
+
+#'@rdname GRANRepository-accessors
+#' @aliases platform,GRANRepository
+#' @export
+setMethod("platform", "GRANRepository",
+          function(x) param(x)@platform)
+
+#'@rdname GRANRepository-accessors
+#' @aliases platform<-,GRANRepository
+#'@export
+setMethod("platform<-", "GRANRepository",
+          function(x, value) {
+              param(x)@platform= value
+              x
+              })
+
+#' @rdname GRANRepository-accessors
+#' @export
+setGeneric("r_version", function(x) standardGeneric("r_version"))
+
+#' @rdname GRANRepository-accessors
+#' @docType methods
+#' @export
+setGeneric("r_version<-", function(x, value) standardGeneric("r_version<-"))
+
+#'@rdname GRANRepository-accessors
+#' @aliases r_version,GRANRepository
+#' @export
+setMethod("r_version", "GRANRepository",
+          function(x) param(x)@r_version)
+
+#'@rdname GRANRepository-accessors
+#' @aliases r_version<-,GRANRepository
+#'@export
+setMethod("r_version<-", "GRANRepository",
+          function(x, value) {
+              param(x)@r_version= value
+              x
+              })
+
+#' @rdname GRANRepository-accessors
+#' @export
+setGeneric("bioc_version", function(x) standardGeneric("bioc_version"))
+
+#' @rdname GRANRepository-accessors
+#' @docType methods
+#' @export
+setGeneric("bioc_version<-", function(x, value) standardGeneric("bioc_version<-"))
+
+#'@rdname GRANRepository-accessors
+#' @aliases bioc_version,GRANRepository
+#' @export
+setMethod("bioc_version", "GRANRepository",
+          function(x) param(x)@bioc_version)
+
+#'@rdname GRANRepository-accessors
+#' @aliases bioc_version<-,GRANRepository
+#'@export
+setMethod("bioc_version<-", "GRANRepository",
+          function(x, value) {
+              param(x)@bioc_version= value
+              x
+              })
